@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// можно отметить преимущество инкапсуляции
 namespace HideDelegate
 {
 	// есть класс Person, который просто хранит инфу об отделе

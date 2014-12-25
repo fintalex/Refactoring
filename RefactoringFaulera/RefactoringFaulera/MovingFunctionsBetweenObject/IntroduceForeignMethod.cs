@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RefactoringFaulera
+// ВНЕДРЕНИЕ внешнего метода
+namespace IntroduceForeignMethod
 {
-	class RemoveMiddleMan
+	class dsd
 	{
 	}
 }
