@@ -7,3 +7,4 @@ c:\users\s.harchenko\documents\visual studio 2012\Projects\RefactoringFaulera\Re
 C:\Users\s.harchenko\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\bin\Debug\RefactoringFaulera.exe.config
 C:\Users\s.harchenko\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.exe
 C:\Users\s.harchenko\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.pdb
+C:\Users\s.harchenko\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.csprojResolveAssemblyReference.cache
