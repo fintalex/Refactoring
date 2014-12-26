@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="MoveFunctionsBetweenObject\ExtractClass.cs" />
     <Compile Include="MoveFunctionsBetweenObject\HideDelegate.cs" />
+    <Compile Include="MoveFunctionsBetweenObject\InlineClass.cs" />
     <Compile Include="MoveFunctionsBetweenObject\IntroduceForeignMethod.cs" />
     <Compile Include="MoveFunctionsBetweenObject\IntroduceLocalExtension.cs" />
     <Compile Include="MoveFunctionsBetweenObject\MoveField.cs" />
