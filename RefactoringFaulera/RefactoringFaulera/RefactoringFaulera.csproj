@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MoveFunctionsBetweenObject\ExtractClass.cs" />
     <Compile Include="MoveFunctionsBetweenObject\HideDelegate.cs" />
     <Compile Include="MoveFunctionsBetweenObject\IntroduceForeignMethod.cs" />
     <Compile Include="MoveFunctionsBetweenObject\IntroduceLocalExtension.cs" />
