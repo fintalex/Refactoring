@@ -8,3 +8,8 @@ C:\Users\s.harchenko\Documents\GitHub\Refactoring\RefactoringFaulera\Refactoring
 C:\Users\s.harchenko\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.exe
 C:\Users\s.harchenko\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.pdb
 C:\Users\s.harchenko\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.csprojResolveAssemblyReference.cache
+C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\bin\Debug\RefactoringFaulera.exe.config
+C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\bin\Debug\RefactoringFaulera.exe
+C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\bin\Debug\RefactoringFaulera.pdb
+C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.exe
+C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.pdb
