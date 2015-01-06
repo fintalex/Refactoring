@@ -40,7 +40,20 @@ namespace ReplaceConstructorWithFactoryMethod2
         }
         // если мы хотим создать подклассы Employee, сответствующие кодам типов
         // поэтому нужен фабричный метод
-     
+        public static Employee2 create(int type)
+        {
+            switch (type)
+            {
+                case ENGINEER:
+                    return create("Engineer");
+                case SALESMAN:
+                    return create("Salesman");
+                case MANAGER:
+                    return create("Manager");
+                default:
+                    throw new Exception("Недопустимое значение");
+            }
+        }
         public static Employee2 create(string nameInstance)
         {
             try
@@ -68,4 +81,26 @@ namespace ReplaceConstructorWithFactoryMethod2
     }
 }
 
+namespace ReplaceConstructorWithFactoryMethod3
+{
+   class Person
+   {
+       public static Person createMale()
+       {
+           return new Male();
+       }
+       public static Person createFamale()
+       {
+           return new Famale();
+       }
+   }
+   class Male : Person
+   {
+
+   }
+    class Famale : Person
+    {
+
+    }
+}
 
