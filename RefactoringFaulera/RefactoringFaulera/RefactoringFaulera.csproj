@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SimplificationMethodCalls\RemoveSettingMethod.cs" />
     <Compile Include="DataOrganization\ChangeValueToReference.cs" />
     <Compile Include="DataOrganization\ReplaceDataValueWithObject.cs" />
     <Compile Include="DataOrganization\SelfEncapsulateField.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MoveFunctionsBetweenObject\RemoveMiddleMan.cs" />
+    <Compile Include="SimplificationMethodCalls\ReplaceConstructorWithFactoryMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
