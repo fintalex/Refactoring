@@ -24,7 +24,8 @@ namespace RefactoringFaulera
 
             // =================== test for ReplaceConstructorWithFactoryMethod ===========================
             Employee eng = new Employee(0); // типа создали инженера
-            Employee2 emp = Employee2.create(Employee2.ENGINEER);
+            Employee2 emp = Employee2.create("Engineer");
+            Employee2 emp2 = Employee2.create("Salesman");
 		}
 	}
 }

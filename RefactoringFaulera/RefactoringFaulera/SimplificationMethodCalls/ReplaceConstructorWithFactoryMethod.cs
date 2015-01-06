@@ -23,12 +23,16 @@ namespace ReplaceConstructorWithFactoryMethod
 
 namespace ReplaceConstructorWithFactoryMethod2
 {
-    class Employee2
+    public  class Employee2
     {
         private int _type;
-        public static int ENGINEER = 0;
-        public static int SALESMAN = 1;
-        public static int MANAGER = 2;
+        public const int ENGINEER = 0;
+        public const int SALESMAN = 1;
+        public const int MANAGER = 2;
+        
+        protected Employee2()
+        {
+        }
         // а, ну , и делаем конструктор закрытым если хотим создавать особенные экземпляры
         private Employee2(int type)
         {
@@ -36,10 +40,32 @@ namespace ReplaceConstructorWithFactoryMethod2
         }
         // если мы хотим создать подклассы Employee, сответствующие кодам типов
         // поэтому нужен фабричный метод
-        public static Employee2 create(int type)
+     
+        public static Employee2 create(string nameInstance)
         {
-            return new Employee2(type);
+            try
+            {
+                return (Employee2)Activator.CreateInstance(Type.GetType("ReplaceConstructorWithFactoryMethod2."+nameInstance));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
+
+    public class Engineer : Employee2
+    {
+
+    }
+    public class Salesman : Employee2
+    {
+
+    }
+    public class Manager : Employee2
+    {
+
+    }
 }
+
 
