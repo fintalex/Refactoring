@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 //using ReplaceConstructorWithFactoryMethod3;
 //using ExtractSubclass;
 //using ExtractSubclass2;
+//using ReplaceDelegationWithInheritance2;
 
 namespace RefactoringFaulera
 {
@@ -38,8 +39,14 @@ namespace RefactoringFaulera
             //// JobItem j1 = new JobItem(0, 5, true, kent); // необходимо для создания экземпляра в ExtractSubclass
             //JobItem j2 = new JobItem(10, 15);
             //JobItem j1 = new LaborItem(0, kent);
-           
+
+            //// =================== test for ReplaceDelegationWithInheritance ===========================
+            //Employee emp = new Employee();
+            //emp.setName("Vasya Lebedev");
+            //string str = emp.toString();
+            //string strName = emp.getName();
             
+
 		}
 	}
 }
