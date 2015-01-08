@@ -58,6 +58,7 @@
     <Compile Include="SimplificationMethodCalls\ReplaceConstructorWithFactoryMethod.cs" />
     <Compile Include="SimplificationMethodCalls\ReplaceExceptionWithTest.cs" />
     <Compile Include="SolvingProblemsOfGeneralization\ExtractSubclass.cs" />
+    <Compile Include="SolvingProblemsOfGeneralization\ExtractSuperclass.cs" />
     <Compile Include="SolvingProblemsOfGeneralization\PullUpConstructorBody.cs" />
   </ItemGroup>
   <ItemGroup>
