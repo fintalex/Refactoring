@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 //using RemoveSettingMethod2;
-using ReplaceConstructorWithFactoryMethod;
-using ReplaceConstructorWithFactoryMethod2;
-using ReplaceConstructorWithFactoryMethod3;
+//using ReplaceConstructorWithFactoryMethod;
+//using ReplaceConstructorWithFactoryMethod2;
+//using ReplaceConstructorWithFactoryMethod3;
+//using ExtractSubclass;
+using ExtractSubclass2;
 
 namespace RefactoringFaulera
 {
@@ -31,6 +33,13 @@ namespace RefactoringFaulera
             //Person kent = new Male(); // можно будет заменить на:
             //Person kent2 = Person.createMale();
 
+            // =================== test for ExtractSubclass2 ===========================
+            Employee kent = new Employee(5);
+            // JobItem j1 = new JobItem(0, 5, true, kent); // необходимо для создания экземпляра в ExtractSubclass
+            JobItem j2 = new JobItem(10, 15);
+            JobItem j1 = new LaborItem(0, kent);
+           
+            
 		}
 	}
 }

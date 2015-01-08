@@ -13,4 +13,3 @@ C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\Refactor
 C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\bin\Debug\RefactoringFaulera.pdb
 C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.exe
 C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.pdb
-C:\Users\Алексей\Documents\GitHub\Refactoring\RefactoringFaulera\RefactoringFaulera\obj\Debug\RefactoringFaulera.csprojResolveAssemblyReference.cache
