@@ -71,19 +71,31 @@ namespace ExtractSuperclass2
 {
     public abstract class Party
     {
-        protected string _name;
+        protected string _name;// Подъем поля
+        public string getName() // подъем метода
+        {
+            return _name;
+        }
+        protected Party (string name) // подъем тела консттруктора
+        {
+            _name = name;
+        }
+        // так как этот метод имеет разную реализацию
+        // но имеет одну сигнатуру , то переименовываем его
+        // и создаем абстрактный метод в базовом классе
+        abstract public int getAnnualCost(); 
     }
     public class Employee : Party
     {
         private int _annualCost;
         private string _id;
-        public Employee(string name, string id, int annualCost)
+        public Employee(string name, string id, int annualCost)// немного подкорректировали старый конструктор
+            : base (name)
         {
-            _name = name;
             _id = id;
             _annualCost = annualCost;
         }
-        public int getAnnualCost()
+        public override int getAnnualCost()
         {
             return _annualCost;
         }
@@ -91,24 +103,22 @@ namespace ExtractSuperclass2
         {
             return _id;
         }
-        public string getName()
-        {
-            return _name;
-        }
-
+       
     }
 
     public class Department : Party
     {
         private List<Employee> _staff = new List<Employee>();
 
-        public Department(string name)
-        {
-            _name = name;
-        }
-        public int getTotalAnnualCost()
+        public Department(string name) : base(name) {} // немного подкорректировали старый конструктор
+
+        public override int getAnnualCost()
         {
             int result = 0;
+            foreach (Employee each in getStaff())
+            {
+                result += each.getAnnualCost();
+            }
 
             return result;
         }
@@ -124,9 +134,6 @@ namespace ExtractSuperclass2
         {
             _staff.Add(arg);
         }
-        public string getName()
-        {
-            return _name;
-        }
+       
     }
 }
