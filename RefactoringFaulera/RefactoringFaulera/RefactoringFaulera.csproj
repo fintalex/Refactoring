@@ -61,6 +61,7 @@
     <Compile Include="SolvingProblemsOfGeneralization\ExtractSubclass.cs" />
     <Compile Include="SolvingProblemsOfGeneralization\ExtractSuperclass.cs" />
     <Compile Include="SolvingProblemsOfGeneralization\PullUpConstructorBody.cs" />
+    <Compile Include="SolvingProblemsOfGeneralization\ReplaceDelegationWithInheritance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
