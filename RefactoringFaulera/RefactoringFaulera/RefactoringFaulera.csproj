@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OriginalProgramm\MovieRentalCusomer.cs" />
     <Compile Include="SimplificationMethodCalls\RemoveSettingMethod.cs" />
     <Compile Include="DataOrganization\ChangeValueToReference.cs" />
     <Compile Include="DataOrganization\ReplaceDataValueWithObject.cs" />
