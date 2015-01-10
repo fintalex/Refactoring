@@ -164,6 +164,27 @@ namespace MovieRentalCusomer2
         {
             return _movie;
         }
+        public double getCharge()
+        {
+            double result = 0;
+            switch (getMovie().getPriceCode())
+            {
+                case Movie.REGULAR:
+                    result += 2;
+                    if (getDaysRented() > 2)
+                        result += (getDaysRented() - 2) * 1.5;
+                    break;
+                case Movie.NEW_RELEASE:
+                    result += getDaysRented() * 3;
+                    break;
+                case Movie.CHILDREN:
+                    result += 1.5;
+                    if (getDaysRented() > 3)
+                        result += (getDaysRented() - 3) * 1.5;
+                    break;
+            }
+            return result;
+        }
     }
 
     // класс, представляющий клиента магазина
@@ -193,7 +214,7 @@ namespace MovieRentalCusomer2
             {
                 double thisAmount = 0;
                 // определить сумму для каждой строки
-                thisAmount = amountFor(each);
+                thisAmount = each.getCharge();
                 // добавить очки для активного арендатора
                 frequentRenterPoints++;
                 //бонус за аренду новинки на два дня
@@ -209,28 +230,11 @@ namespace MovieRentalCusomer2
             result += "Вы заработали " + frequentRenterPoints.ToString() + " oчков за активность";
             return result;
         }
-
-        private static double amountFor(Rental each)
+        private double amountFor(Rental aRental)
         {
-            double thisAmount=0;
-            switch (each.getMovie().getPriceCode())
-            {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (each.getDaysRented() > 2)
-                        thisAmount += (each.getDaysRented() - 2) * 1.5;
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += each.getDaysRented() * 3;
-                    break;
-                case Movie.CHILDREN:
-                    thisAmount += 1.5;
-                    if (each.getDaysRented() > 3)
-                        thisAmount += (each.getDaysRented() - 3) * 1.5;
-                    break;
-            }
-            return thisAmount;
+            return aRental.getCharge();
         }
+      
     }
 
 }
