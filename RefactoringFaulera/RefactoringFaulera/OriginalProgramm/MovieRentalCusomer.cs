@@ -212,27 +212,22 @@ namespace MovieRentalCusomer2
             string result = "Учет аренды для " + getName() + "\n";
             foreach (Rental each in rentals)
             {
-                double thisAmount = 0;
                 // определить сумму для каждой строки
-                thisAmount = each.getCharge();
+               
                 // добавить очки для активного арендатора
                 frequentRenterPoints++;
                 //бонус за аренду новинки на два дня
                 if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
                     frequentRenterPoints++;
                 // показать результаты для этой аренды
-                result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount.ToString() + "\n";
-                totalAmount += thisAmount;
+                result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() +"\n";
+                totalAmount += each.getCharge();
             }
 
             // добавить нижний колонтитул 
             result += "Сумма задолженности составляет " + totalAmount.ToString() + "\n";
             result += "Вы заработали " + frequentRenterPoints.ToString() + " oчков за активность";
             return result;
-        }
-        private double amountFor(Rental aRental)
-        {
-            return aRental.getCharge();
         }
       
     }
