@@ -213,25 +213,53 @@ namespace MovieRentalCusomer2
         }
         public string statement()
         {
-            double totalAmount = 0;
-            int frequentRenterPoints = 0;
-            List<Rental> rentals = new List<Rental>();
             string result = "Учет аренды для " + getName() + "\n";
-            foreach (Rental each in rentals)
+			foreach (Rental each in _rental)
             {
-				frequentRenterPoints += each.getFrequentRenterPoints();
-
                 // показать результаты для этой аренды
                 result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() +"\n";
-                totalAmount += each.getCharge();
             }
 
             // добавить нижний колонтитул 
-            result += "Сумма задолженности составляет " + totalAmount.ToString() + "\n";
-            result += "Вы заработали " + frequentRenterPoints.ToString() + " oчков за активность";
+			result += "Сумма задолженности составляет " + getTotalCharge() + "\n";
+			result += "Вы заработали " + getTotalFrequentRenterPoints() + " oчков за активность";
             return result;
         }
-
+		// замена временной переменной методом
+		private double getTotalCharge() 
+		{
+			double result = 0;
+			foreach (Rental each in _rental)
+			{
+				result += each.getCharge();
+			}
+			return result;
+		}
+		// замена временной переменной методом
+		private int getTotalFrequentRenterPoints()
+		{
+			int result = 0;
+			foreach (Rental each in _rental)
+			{
+				result += each.getFrequentRenterPoints();
+			}
+			return result;
+		}
+		
+		// написание нового метода
+		public string htmlStatement()
+		{
+			String result = "<H1>Операция аренды для <EM>" + getName() + "</EM></H1><P>\n";
+			foreach (Rental each in _rental)
+			{
+				// показать результаты по каждой аренде
+				result += each.getMovie().getTitle() + ": " + each.getCharge() + "<BR>\n";
+			}
+			// добавить нижний колонтитул
+			result += "<P> Ваша задолженность составляет <EM>" + getTotalCharge() + " </EM><P>\n";
+			result += "На этой аренде вы заработали <EM>" + getTotalFrequentRenterPoints() + "</EM> очков за активность<P>";
+			return result;
+		}
 		
       
     }
