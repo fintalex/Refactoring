@@ -125,26 +125,103 @@ namespace MovieRentalCusomer2
         public const int REGULAR = 0;
         public const int NEW_RELEASE = 1;
         private String _title;
-        private int _priceCode;
+        //private int _priceCode;
+
+		//заменяем поле кода цены полем цены и изменяем функцию доступа. (так сказать своеобразная фабрика получается)
+		private Price _price;
 
         public Movie(String title, int priceCode)
         {
             _title = title;
-            _priceCode = priceCode;
+			setPriceCode(priceCode);
         }
         public int getPriceCode()
         {
-            return _priceCode;
+            //return _priceCode;
+			return _price.getPriceCode();
         }
         public void setPriceCode(int arg)
         {
-            _priceCode = arg;
+            //_priceCode = arg;
+			switch (arg)
+			{ 
+				case REGULAR:
+					_price = new RegularPrice();
+					break;
+				case CHILDREN:
+					_price = new ChildrensPrice();
+					break;
+				case NEW_RELEASE:
+					_price = new NewReleasePrice();
+					break;
+				default:
+					throw new Exception();
+
+			}
         }
         public String getTitle()
         {
             return _title;
         }
+
+		// перенеся два метода 
+		// они сведены в класс, кодторый содержит этот тип
+		public double getCharge(int daysRented)
+		{
+			double result = 0;
+			switch (getPriceCode())
+			{
+				case Movie.REGULAR:
+					result += 2;
+					if (daysRented > 2)
+						result += (daysRented - 2) * 1.5;
+					break;
+				case Movie.NEW_RELEASE:
+					result += daysRented * 3;
+					break;
+				case Movie.CHILDREN:
+					result += 1.5;
+					if (daysRented > 3)
+						result += (daysRented - 3) * 1.5;
+					break;
+			}
+			return result;
+		}
+		public int getFrequentRenterPoints(int daysRented)
+		{
+			//бонус за аренду новинки на два дня
+			if ((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
+				return 2;
+			return 1;
+		}
     }
+	// замена кода типа состоянием-стратегией
+
+	abstract class Price
+	{
+		public abstract int getPriceCode();
+	}
+	class ChildrensPrice : Price
+	{
+		public override int getPriceCode()
+		{
+			return Movie.CHILDREN;
+		}
+	}
+	class NewReleasePrice : Price
+	{
+		public override int getPriceCode()
+		{
+			return Movie.NEW_RELEASE;
+		}
+	}
+	class RegularPrice : Price
+	{
+		public override int getPriceCode()
+		{
+			return Movie.REGULAR;
+		}
+	}
 
     // класс представляющий данные о прокате фильма
     class Rental
@@ -164,33 +241,14 @@ namespace MovieRentalCusomer2
         {
             return _movie;
         }
-        public double getCharge()
-        {
-            double result = 0;
-            switch (getMovie().getPriceCode())
-            {
-                case Movie.REGULAR:
-                    result += 2;
-                    if (getDaysRented() > 2)
-                        result += (getDaysRented() - 2) * 1.5;
-                    break;
-                case Movie.NEW_RELEASE:
-                    result += getDaysRented() * 3;
-                    break;
-                case Movie.CHILDREN:
-                    result += 1.5;
-                    if (getDaysRented() > 3)
-                        result += (getDaysRented() - 3) * 1.5;
-                    break;
-            }
-            return result;
-        }
+		public double getCharge()
+		{
+			return _movie.getCharge(_daysRented);
+		}
+        
 		public int getFrequentRenterPoints()
 		{
-			//бонус за аренду новинки на два дня
-			if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1)
-				return 2;
-			return 1;
+			return _movie.getFrequentRenterPoints(_daysRented);
 		}
     }
 
