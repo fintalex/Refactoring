@@ -168,6 +168,24 @@ namespace MovieRentalCusomer2
 		// они сведены в класс, кодторый содержит этот тип
 		public double getCharge(int daysRented)
 		{
+			return _price.getCharge(daysRented);
+		}
+		public int getFrequentRenterPoints(int daysRented)
+		{
+			//бонус за аренду новинки на два дня
+			if ((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
+				return 2;
+			return 1;
+		}
+    }
+	// замена кода типа состоянием-стратегией
+
+	abstract class Price
+	{
+		public abstract int getPriceCode();
+		// переместили метод в Price
+		public double getCharge(int daysRented)
+		{
 			double result = 0;
 			switch (getPriceCode())
 			{
@@ -187,19 +205,6 @@ namespace MovieRentalCusomer2
 			}
 			return result;
 		}
-		public int getFrequentRenterPoints(int daysRented)
-		{
-			//бонус за аренду новинки на два дня
-			if ((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
-				return 2;
-			return 1;
-		}
-    }
-	// замена кода типа состоянием-стратегией
-
-	abstract class Price
-	{
-		public abstract int getPriceCode();
 	}
 	class ChildrensPrice : Price
 	{
