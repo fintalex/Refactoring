@@ -170,12 +170,9 @@ namespace MovieRentalCusomer2
 		{
 			return _price.getCharge(daysRented);
 		}
-		public int getFrequentRenterPoints(int daysRented)
+		public  int getFrequentRenterPoints(int daysRented)
 		{
-			//бонус за аренду новинки на два дня
-			if ((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
-				return 2;
-			return 1;
+			return _price.getFrequentRenterPoints(daysRented);
 		}
     }
 	// замена кода типа состоянием-стратегией
@@ -185,6 +182,13 @@ namespace MovieRentalCusomer2
 		public abstract int getPriceCode();
 		// переместили метод в Price
 		public abstract double getCharge(int daysRented);
+		// так как этот метод не был в условном операторе для всех подклассов
+		// то разбиваем только для одного полкласса - определяя в нем такой же метод как и в родительском.
+		// в остальных подклассах будет использоваться родительский метод
+		public int getFrequentRenterPoints(int daysRented)
+		{
+			return 1;
+		}
 	}
 	class ChildrensPrice : Price
 	{
@@ -209,6 +213,15 @@ namespace MovieRentalCusomer2
 		public override double getCharge(int daysRented)
 		{
 			return daysRented * 3;
+		}
+		public int getFrequentRenterPoints(int daysRented)
+		{
+			//бонус за аренду новинки на два дня
+			if ((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
+				return 2;
+			return 1;
+
+			return (daysRented > 1) ? 2 : 1;
 		}
 	}
 	class RegularPrice : Price
