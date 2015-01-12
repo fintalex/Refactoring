@@ -185,6 +185,13 @@ namespace MovieRentalCusomer2
             }
             return result;
         }
+		public int getFrequentRenterPoints()
+		{
+			//бонус за аренду новинки на два дня
+			if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1)
+				return 2;
+			return 1;
+		}
     }
 
     // класс, представляющий клиента магазина
@@ -212,13 +219,8 @@ namespace MovieRentalCusomer2
             string result = "Учет аренды для " + getName() + "\n";
             foreach (Rental each in rentals)
             {
-                // определить сумму для каждой строки
-               
-                // добавить очки для активного арендатора
-                frequentRenterPoints++;
-                //бонус за аренду новинки на два дня
-                if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
-                    frequentRenterPoints++;
+				frequentRenterPoints += each.getFrequentRenterPoints();
+
                 // показать результаты для этой аренды
                 result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() +"\n";
                 totalAmount += each.getCharge();
@@ -229,6 +231,8 @@ namespace MovieRentalCusomer2
             result += "Вы заработали " + frequentRenterPoints.ToString() + " oчков за активность";
             return result;
         }
+
+		
       
     }
 
