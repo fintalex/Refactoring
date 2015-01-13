@@ -320,39 +320,66 @@ namespace MovieRentalCusomer2
 
 		// необходимо чтобы методы  htmlStatement и statement 
 		// появились в подклассах некоторого общего родительского класса
-		// создадим отдельную иерархию стратегий для вывода выписок
-		class Statement { }
-		class TextStatement : Statement 
+		// создадим отдельную иерархию стратегий для вывода выписок.
+		// После того как выделили методы footerString,eachRentalString, headerString
+		// методы value стали похожими.
+		// Применим к нему подъем метода. А также добавим абстрактные методы.
+		public class Statement 
 		{
 			public String value(Customer aCustomer)
 			{
-				string result = "Учет аренды для " + aCustomer.getName() + "\n";
+				string result = headerString(aCustomer);
 				foreach (Rental each in aCustomer._rental)
 				{
 					// показать результаты для этой аренды
-					result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
+					result += eachRentalString(each);
 				}
 
 				// добавить нижний колонтитул 
-				result += "Сумма задолженности составляет " + aCustomer.getTotalCharge() + "\n";
-				result += "Вы заработали " + aCustomer.getTotalFrequentRenterPoints() + " oчков за активность";
+				result += footerString(aCustomer);
 				return result;
+			}
+			protected virtual string footerString(Customer aCustomer)
+			{ return ""; }
+			protected virtual string eachRentalString(Rental each)
+			{ return ""; }
+			protected virtual string headerString(Customer aCustomer)
+			{ return ""; }
+		}
+		class TextStatement : Statement 
+		{
+			public static string footerString(Customer aCustomer)
+			{
+				return "Сумма задолженности составляет " + aCustomer.getTotalCharge() + "\n" +
+					 "Вы заработали " + aCustomer.getTotalFrequentRenterPoints() + " oчков за активность";
+			}
+
+			public static string eachRentalString(Rental each)
+			{
+				return "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
+			}
+
+			public static string headerString(Customer aCustomer)
+			{
+				return "Учет аренды для " + aCustomer.getName() + "\n";
 			}
 		}
 		class HtmlStatement : Statement 
 		{
-			public String value(Customer aCustomer)
+			public static string footerString(Customer aCustomer)
 			{
-				String result = "<H1>Операция аренды для <EM>" + aCustomer.getName() + "</EM></H1><P>\n";
-				foreach (Rental each in aCustomer._rental)
-				{
-					// показать результаты по каждой аренде
-					result += each.getMovie().getTitle() + ": " + each.getCharge() + "<BR>\n";
-				}
-				// добавить нижний колонтитул
-				result += "<P> Ваша задолженность составляет <EM>" + aCustomer.getTotalCharge() + " </EM><P>\n";
-				result += "На этой аренде вы заработали <EM>" + aCustomer.getTotalFrequentRenterPoints() + "</EM> очков за активность<P>";
-				return result;
+				return "<P> Ваша задолженность составляет <EM>" + aCustomer.getTotalCharge() + " </EM><P>\n" + 
+					 "На этой аренде вы заработали <EM>" + aCustomer.getTotalFrequentRenterPoints() + "</EM> очков за активность<P>";
+			}
+
+			public static string eachRentalString(Rental each)
+			{
+				return each.getMovie().getTitle() + ": " + each.getCharge() + "<BR>\n";
+			}
+
+			public static string headerString(Customer aCustomer)
+			{
+				return "<H1>Операция аренды для <EM>" + aCustomer.getName() + "</EM></H1><P>\n";
 			}
 		}
       
