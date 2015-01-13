@@ -288,17 +288,7 @@ namespace MovieRentalCusomer2
         }
         public string statement()
         {
-            string result = "Учет аренды для " + getName() + "\n";
-			foreach (Rental each in _rental)
-            {
-                // показать результаты для этой аренды
-                result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() +"\n";
-            }
-
-            // добавить нижний колонтитул 
-			result += "Сумма задолженности составляет " + getTotalCharge() + "\n";
-			result += "Вы заработали " + getTotalFrequentRenterPoints() + " oчков за активность";
-            return result;
+			return new TextStatement().value(this);
         }
 		// замена временной переменной методом
 		private double getTotalCharge() 
@@ -324,18 +314,47 @@ namespace MovieRentalCusomer2
 		// написание нового метода
 		public string htmlStatement()
 		{
-			String result = "<H1>Операция аренды для <EM>" + getName() + "</EM></H1><P>\n";
-			foreach (Rental each in _rental)
-			{
-				// показать результаты по каждой аренде
-				result += each.getMovie().getTitle() + ": " + each.getCharge() + "<BR>\n";
-			}
-			// добавить нижний колонтитул
-			result += "<P> Ваша задолженность составляет <EM>" + getTotalCharge() + " </EM><P>\n";
-			result += "На этой аренде вы заработали <EM>" + getTotalFrequentRenterPoints() + "</EM> очков за активность<P>";
-			return result;
+
+			return new HtmlStatement().value(this);
 		}
-		
+
+		// необходимо чтобы методы  htmlStatement и statement 
+		// появились в подклассах некоторого общего родительского класса
+		// создадим отдельную иерархию стратегий для вывода выписок
+		class Statement { }
+		class TextStatement : Statement 
+		{
+			public String value(Customer aCustomer)
+			{
+				string result = "Учет аренды для " + aCustomer.getName() + "\n";
+				foreach (Rental each in aCustomer._rental)
+				{
+					// показать результаты для этой аренды
+					result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
+				}
+
+				// добавить нижний колонтитул 
+				result += "Сумма задолженности составляет " + aCustomer.getTotalCharge() + "\n";
+				result += "Вы заработали " + aCustomer.getTotalFrequentRenterPoints() + " oчков за активность";
+				return result;
+			}
+		}
+		class HtmlStatement : Statement 
+		{
+			public String value(Customer aCustomer)
+			{
+				String result = "<H1>Операция аренды для <EM>" + aCustomer.getName() + "</EM></H1><P>\n";
+				foreach (Rental each in aCustomer._rental)
+				{
+					// показать результаты по каждой аренде
+					result += each.getMovie().getTitle() + ": " + each.getCharge() + "<BR>\n";
+				}
+				// добавить нижний колонтитул
+				result += "<P> Ваша задолженность составляет <EM>" + aCustomer.getTotalCharge() + " </EM><P>\n";
+				result += "На этой аренде вы заработали <EM>" + aCustomer.getTotalFrequentRenterPoints() + "</EM> очков за активность<P>";
+				return result;
+			}
+		}
       
     }
 
